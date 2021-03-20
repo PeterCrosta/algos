@@ -22,9 +22,6 @@ MyCircularQueue.prototype.enQueue = function(value) {
     
 };
 
-/**
- * @return {boolean}
- */
 MyCircularQueue.prototype.deQueue = function() {
     if (this.isEmpty()) return false
     if (this.h === this.t) {

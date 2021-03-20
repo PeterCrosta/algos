@@ -1,5 +1,10 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
 
-var MyCircularQueue = function(k) {
+ var MyCircularQueue = function(k) {
     this.q = new Array(k)
     this.h = -1;
     this.t = -1;
@@ -7,47 +12,52 @@ var MyCircularQueue = function(k) {
 
 
 MyCircularQueue.prototype.enQueue = function(value) {
-    if (this.isFull()) {
-        return false
-    }
-    if (this.isEmpty()) {
+    if (this.isFull()) {}
+    else if (this.isEmpty()) {
         this.h = 0
         this.t = 0
         this.q[0] = value
-        return true
     } else {
         this.t = this.t === this.q.length - 1 ? 0 : this.t + 1
         this.q[this.t] = value
-        return true
     }
     
 };
 
-
-MyCircularQueue.prototype.deQueue = function() {
-    if (this.isEmpty()) return false
-    if (this.h === this.t) {
+MyCircularQueue.prototype.removeBack = function() {
+    if (this.isEmpty()) {}
+    else if (this.h === this.t) {
         this.q[this.h] = undefined
         this.h = -1
         this.t = -1
-        return true
     } else {
         this.q[this.h] = undefined
         this.h = this.h === this.q.length - 1 ? 0 : this.h + 1
-        return true
     }
 };
 
+MyCircularQueue.prototype.removeFront = function() {
+    if (this.isEmpty()) {}
+    else if (this.h === this.t) {
+        this.q[this.t] = undefined
+        this.h = -1
+        this.t = -1
+    } else {
+        this.q[this.t] = undefined
+        this.t = this.t === 0 ? this.q.length - 1 : this.t - 1
+    }
+}
 
-MyCircularQueue.prototype.Front = function() {
-    if (this.isEmpty()) return -1
-    return this.q[this.h]
+
+MyCircularQueue.prototype.front = function() {
+    if (this.isEmpty()) return
+    return this.q[this.t]
 };
 
 
-MyCircularQueue.prototype.Rear = function() {
-    if (this.isEmpty()) return -1
-    return this.q[this.t]
+MyCircularQueue.prototype.rear = function() {
+    if (this.isEmpty()) return
+    return this.q[this.h]
 };
 
 
@@ -63,3 +73,26 @@ MyCircularQueue.prototype.isFull = function() {
     return false
 };
 
+var maxSlidingWindow = function(nums, k) {
+    if (!nums.length) return []
+    let deq = new MyCircularQueue(k)
+    let max =[]
+    let i = 0
+
+    const add = n => {
+        while (!deq.isEmpty() && n > deq.front()) deq.removeFront()
+        deq.enQueue(n)
+    }
+    const remove = n => {
+        if (deq.rear() === n) deq.removeBack()
+    }
+    nums.forEach((num, idx) => {
+        add(num)
+        if (idx - i === k - 1) {
+            max.push(deq.rear())
+            remove(nums[i])
+            i++
+        }
+    })
+    return max
+};
