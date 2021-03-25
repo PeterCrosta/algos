@@ -96,3 +96,27 @@ var maxSlidingWindow = function(nums, k) {
     })
     return max
 };
+
+// var compress = function(chars) {
+//     let char;
+//     let hold = [];
+//     let num = 1;
+//     const addNum = (n) => {
+//         let str = `${n}`;
+//         for (let i = str.length - 1; i >= 0; i--) hold.push(str[i])
+//     }
+//     while (chars.length) {
+//         char = chars.pop()
+//         if (char === chars[chars.length - 1]) {
+//             num++
+//         } else if (num > 1) {
+//             addNum(num);
+//             hold.push(char);
+//             num = 1;
+//         }
+//         else hold.push(char);
+//     }
+//     while (hold.length) {
+//         chars.push(hold.pop())
+//     }
+// };
