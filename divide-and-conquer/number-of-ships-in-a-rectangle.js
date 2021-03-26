@@ -25,6 +25,7 @@ var countShips = function(sea, topRight, bottomLeft) {
     
     
 //     const findCols = (r, l) => {
+            // if (cols.length === 10) return
 //         if (!sea.hasShips([r,top],[l,bottom])) {
 //             return
 //         }
