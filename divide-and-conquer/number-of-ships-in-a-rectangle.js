@@ -19,3 +19,45 @@ var countShips = function(sea, topRight, bottomLeft) {
     dAndC(topRight, bottomLeft)
     return set.size
 };
+
+// var countShips = function(sea, topRight, bottomLeft) {
+//     let top = topRight[1], bottom = bottomLeft[1], cols = [], count = 0;
+    
+    
+//     const findCols = (r, l) => {
+//         if (!sea.hasShips([r,top],[l,bottom])) {
+//             return
+//         }
+//         if (l === r) {
+//             cols.push(l)
+//             return
+//         }
+//         let mid = l + (r-l)/2
+//         if (mid % 1 === 0) {
+//             findCols(r,mid)
+//             findCols(mid-1,l)
+//         } else {
+//             findCols(r,Math.ceil(mid))
+//             findCols(Math.floor(mid),l)
+//         }
+//     }
+//     const findShip = (col, t = top, b = bottom) => {
+//         if (count === 10) return
+//         if (!sea.hasShips([col,t],[col,b])) return
+//         if (t === b) {
+//             count++
+//             return
+//         }
+//         let mid = b + (t-b)/2
+//         if (mid % 1 === 0) {
+//             findShip(col, t, mid)
+//             findShip(col, mid-1, b)
+//         } else {
+//             findShip(col, t, Math.ceil(mid))
+//             findShip(col, Math.floor(mid), b)
+//         }
+//     }
+//     findCols(topRight[0],bottomLeft[0])
+//     cols.forEach(col => findShip(col))
+//     return count
+// };
