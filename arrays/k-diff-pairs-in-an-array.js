@@ -19,3 +19,19 @@ var findPairs = function(nums, k) {
 
     return pairs.size
 };
+
+// var findPairs = function(nums, k) {
+//     const pairs = new Set()
+//     for (let i = 0; i < nums.length - 1; i++) {
+//         const n1 = nums[i]
+//         for (let j = i+1; j < nums.length; j++) {
+//             const n2 = nums[j]
+//             const diff = Math.abs(n1-n2);
+//             if (diff === k) {
+//                 const arr = [n1,n2]
+//                 arr.sort((a,b) => a-b)
+//                 pairs.add(`${arr[0]}x${arr[1]}`)
+//             }
+//         }
+//     }
+//     return pairs.size
